@@ -1,0 +1,20 @@
+@import "tailwindcss";
+@import "flowbite/src/themes/default";
+@plugin "flowbite/plugin";
+@source "../node_modules/flowbite";
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+@theme {
+    --color-primary-500: #FFF2E1;
+    --color-green-600: #A9B388;
+    --color-green-700: #A9B388;
+    --color-green-800: #5F6F52;
+    --color-green-900: #47523E;
+}
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
