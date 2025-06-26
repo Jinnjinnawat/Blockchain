@@ -36,6 +36,7 @@ export default class TableProduct extends Component {
       this.setState({ showSuccessAlert: false });
     }, 3000);
   };
+  
   openPopup = (product, event) => {
   const rect = event.currentTarget.getBoundingClientRect();
   const scrollTop = window.scrollY;

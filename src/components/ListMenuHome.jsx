@@ -117,28 +117,7 @@ const ListMenuHome = () => {
         </div>
       </div>
 
-      {/* Category Tabs */}
-      <div className="flex flex-wrap justify-center gap-2 mb-8">
-        {categories.map((cat) => (
-          <button
-            key={cat.name}
-            className={`flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 font-medium ${
-              activeTab === cat.name
-                ? 'bg-green-600 text-white shadow-lg transform scale-105'
-                : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200 hover:border-green-300'
-            }`}
-            onClick={() => setActiveTab(cat.name)}
-          >
-            <span className="text-lg">{cat.icon}</span>
-            <span>{cat.name}</span>
-            <span className={`text-xs px-2 py-1 rounded-full ${
-              activeTab === cat.name ? 'bg-white/20' : 'bg-gray-200'
-            }`}>
-              {cat.count}
-            </span>
-          </button>
-        ))}
-      </div>
+      
 
       {/* Markets Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -149,8 +128,6 @@ const ListMenuHome = () => {
             onMouseEnter={() => setHoveredCard(index)}
             onMouseLeave={() => setHoveredCard(null)}
           >
-            
-
             {/* Image Container */}
             <div className="relative h-48 overflow-hidden">
               <img 
@@ -169,14 +146,8 @@ const ListMenuHome = () => {
 
             {/* Card Content */}
             <div className="p-4">
-
               <div className="flex items-center justify-between mb-3">
-              
               </div>
-
-             
-             
-
               {/* Action Button */}
               <button className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white py-2 px-4 rounded-lg transition-all duration-300 flex items-center justify-center gap-2 font-medium">
                 เลือกซื้อ
