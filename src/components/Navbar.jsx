@@ -39,10 +39,7 @@ export class Navbar extends Component {
     document.removeEventListener('mousedown', this.handleClickOutside);
   }
 
-  handleScroll = () => {
-    const scrollTop = window.pageYOffset;
-    this.setState({ isScrolled: scrollTop > 20 });
-  };
+ 
 
   // Handle click outside dropdown
   handleClickOutside = (event) => {
@@ -96,10 +93,10 @@ export class Navbar extends Component {
               {/* Desktop Navigation */}
               <div className="hidden md:flex items-center space-x-8">
                 {[
-                  { name: 'Home', path: '/home', icon: '🏠' },
-                  { name: 'About', path: '/about', icon: '📋' },
-                  { name: 'Services', path: '/services', icon: '⚡' },
-                  { name: 'Contact', path: '/contact', icon: '📞' },
+                  { name: 'Home', path: '/home',   },
+                  { name: 'About', path: '/about',  },
+                  { name: 'Services', path: '/services',  },
+                  { name: 'Contact', path: '/contact', },
                 ].map((link, index) => (
                   <Link
                     key={index}
@@ -260,10 +257,10 @@ export class Navbar extends Component {
             } overflow-hidden`}>
               <div className="py-4 space-y-2 bg-white/5 backdrop-blur-sm rounded-lg mt-2 border border-white/10">
                 {[
-                  { name: 'Home', path: '/home', icon: '🏠' },
-                  { name: 'About', path: '/about', icon: '📋' },
-                  { name: 'Services', path: '/services', icon: '⚡' },
-                  { name: 'Contact', path: '/contact', icon: '📞' },
+                  { name: 'Home', path: '/home', },
+                  { name: 'About', path: '/about',},
+                  { name: 'Services', path: '/services',  },
+                  { name: 'Contact', path: '/contact',},
                 ].map((link, index) => (
                   <Link
                     key={index}

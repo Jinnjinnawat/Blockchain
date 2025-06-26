@@ -110,7 +110,7 @@ const Carousel = () => {
       {/* Main Content */}
       <div className={`relative z-10 flex flex-col items-center justify-center min-h-[70vh] px-4 py-12 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         
-        {/* Live Update Indicator */}
+  
         
 
         {/* Main Title */}
@@ -122,37 +122,12 @@ const Carousel = () => {
             </span>
           </h1>
           <div className="flex items-center justify-center gap-2 text-white/90">
-            <TrendingUp className="w-5 h-5" />
-            <span className="text-lg">อัปเดตทุกวัน ราคาเป็นธรรม</span>
+       
           </div>
         </div>
 
         {/* Enhanced Search Bar */}
-        <form onSubmit={handleSearch} className="w-full max-w-2xl mb-12">
-          <div className="relative group">
-            <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-2xl blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
-            <div className="relative bg-white rounded-2xl p-1">
-              <div className="flex items-center">
-                <Search className="w-6 h-6 text-gray-400 ml-4" />
-                <input
-                  type="text"
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  placeholder="ค้นหาสินค้า เช่น มะม่วง, ปลาทู, ข้าวหอม..."
-                  className="flex-1 p-4 text-gray-900 placeholder-gray-500 focus:outline-none bg-transparent text-lg"
-                />
-                <button
-                  type="submit"
-                  className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white p-3 rounded-xl margin-r-1 transition-all duration-200 flex items-center gap-2 font-medium"
-                >
-                  ค้นหา
-                  <ArrowRight className="w-5 h-5" />
-                </button>
-              </div>
-            </div>
-          </div>
-        </form>
-
+        
         {/* Categories Grid */}
         <div className="w-full max-w-6xl">
           <div className="text-center mb-8">
@@ -168,13 +143,7 @@ const Carousel = () => {
                 onMouseEnter={() => setHoveredCategory(index)}
                 onMouseLeave={() => setHoveredCategory(null)}
               >
-                {/* Trending Badge */}
-                {category.trending && (
-                  <div className="absolute -top-2 -right-2 bg-gradient-to-r from-yellow-400 to-orange-500 text-white text-xs font-bold px-2 py-1 rounded-full flex items-center gap-1">
-                    <Sparkles className="w-3 h-3" />
-                    ฮิต
-                  </div>
-                )}
+  
                 
                 {/* Category Image */}
                 <div className="relative mb-4">
