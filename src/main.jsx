@@ -6,12 +6,15 @@ import { BrowserRouter, Routes, Route,Link, createBrowserRouter, RouterProvider}
 import Home from './pages/Home.jsx';
 import Login from './components/FormLogin.jsx'
 import Jumbotron from './pages/Jumbotron.jsx';
-import Register from './pages/Register.jsx';
+import FormReg from './components/FormReg.jsx';
 import Dashboard from './pages/Dashboard.jsx';
 import TableProduct from './components/TableProduct.jsx';
 import Listproduct from './pages/Listproduct.jsx'
-
+import { Buffer } from 'buffer'
+window.Buffer = Buffer
 import Tableuser from './components/Tableuser.jsx';
+import ModernFarmerAbout from './pages/About.jsx';
+import BlockchainFarmServices from './pages/Services.jsx'
 const router = createBrowserRouter([
   {
     path:"/my-products",
@@ -39,7 +42,7 @@ const router = createBrowserRouter([
   },
   {
     path:"/register",
-    element:<Register></Register>
+    element:<FormReg></FormReg>
   },
   {
     path:"/dashboard",
@@ -50,6 +53,16 @@ const router = createBrowserRouter([
     path:"/dashboard",
     element:<Dashboard></Dashboard>
   }
+  ,
+  {
+    path:"/about",
+    element:<ModernFarmerAbout></ModernFarmerAbout>
+  }
+   ,
+  {
+    path:"/services",
+    element:<BlockchainFarmServices></BlockchainFarmServices>
+  },
 
 ])
 createRoot(document.getElementById('root')).render(

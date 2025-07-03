@@ -22,8 +22,7 @@ export default class Tableuser extends Component {
 
   async componentDidMount() {
     try {
-      const users = await getUsers(); // ✅ ดึงข้อมูลผู้ใช้งาน
-      this.setState({ users });
+      const users = await getUsers(); 
     } catch (error) {
       console.error("Error fetching users:", error);
     }
@@ -33,7 +32,7 @@ export default class Tableuser extends Component {
     this.setState({ searchQuery: e.target.value });
   };
 
-  openPopup = (user) => {
+  openPopupp = (user) => {
     const { selectedUser, showPopup } = this.state;
     if (showPopup && selectedUser?.id === user.id) {
       this.closePopup();
@@ -71,7 +70,7 @@ export default class Tableuser extends Component {
   handleConfirmDelete = async () => {
     const { userToDelete, users } = this.state;
     try {
-      await deleteUser(userToDelete.id); // ✅ สมมุติว่า deleteUser คือฟังก์ชันลบ user
+      await deleteUser(userToDelete.id); 
       const updated = users.filter((u) => u.id !== userToDelete.id);
       this.setState({
         users: updated,
