@@ -5,8 +5,9 @@ import Footer from "../components/Footer";
 import ListMenuHome from "../components/ListMenuHome";
 import Carouselbestseller from "../components/Carouselbestseller";
 import { getProduct } from "../services/firestoreService";
-
+import { useNavigate } from "react-router-dom";
 export default function Home() {
+  const navigate = useNavigate(); 
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -108,8 +109,11 @@ export default function Home() {
           </span>
         </div>
         
-        <button className="w-full bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-lg transition-colors duration-200 font-medium">
-          เพิ่มลงตะกร้า
+        <button
+          onClick={() => navigate(`/product/${product.id}`)}
+          className="w-full bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-lg transition-colors duration-200 font-medium"
+        >
+          ดูเพิ่มเติม
         </button>
       </div>
     </div>

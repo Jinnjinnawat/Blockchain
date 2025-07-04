@@ -15,6 +15,9 @@ window.Buffer = Buffer
 import Tableuser from './components/Tableuser.jsx';
 import ModernFarmerAbout from './pages/About.jsx';
 import BlockchainFarmServices from './pages/Services.jsx'
+import ProductDetail from './pages/ProductDetail.jsx';
+import ProductListPage from './pages/ProductListPage.jsx';
+
 const router = createBrowserRouter([
   {
     path:"/my-products",
@@ -63,6 +66,17 @@ const router = createBrowserRouter([
     path:"/services",
     element:<BlockchainFarmServices></BlockchainFarmServices>
   },
+  {
+    path: "/product/:id",
+    element: <ProductDetail />
+  },
+  {
+    path: "/products/:category",
+    element: <ProductListPage />
+  },
+  
+  
+
 
 ])
 createRoot(document.getElementById('root')).render(

@@ -67,3 +67,46 @@ export const deleteUser = async (userId) => {
     throw error; // โยน error กลับให้ modal จัดการต่อได้
   }
 };
+export const getProductById = async (id) => {
+  const docRef = doc(db, "products", id);
+  const docSnap = await getDoc(docRef);
+  if (docSnap.exists()) {
+    return { id: docSnap.id, ...docSnap.data() };
+  } else {
+    return null;
+  }
+};
+// ดึงหมวดหมู่ทั้งหมดจาก products แบบไม่ซ้ำ พร้อมนับจำนวน
+export const getCategoriesFromProducts = async () => {
+  try {
+    const querySnapshot = await getDocs(collection(db, "products"));
+    const products = querySnapshot.docs.map(doc => doc.data());
+
+    // สร้าง Map สำหรับเก็บ category และนับจำนวน
+    const categoryMap = new Map();
+
+    products.forEach(product => {
+      const category = product.category || "ไม่ระบุ";
+      if (categoryMap.has(category)) {
+        categoryMap.set(category, categoryMap.get(category) + 1);
+      } else {
+        categoryMap.set(category, 1);
+      }
+    });
+
+    // แปลงเป็น array สำหรับแสดงผล
+    const categoriesArray = Array.from(categoryMap.entries()).map(([name, count]) => ({
+      name,
+      count
+    }));
+
+    // เพิ่ม "ทั้งหมด"
+    const totalCount = products.length;
+    categoriesArray.unshift({ name: "ทั้งหมด", count: totalCount });
+
+    return categoriesArray;
+  } catch (error) {
+    console.error("Error getting categories:", error);
+    throw error;
+  }
+};
