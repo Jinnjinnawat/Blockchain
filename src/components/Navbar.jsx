@@ -97,6 +97,8 @@ export class Navbar extends Component {
                   { name: 'About', path: '/about',  },
                   { name: 'Services', path: '/services',  },
                   { name: 'Contact', path: '/contact', },
+                  { name: 'Product', path: '/productlist', },
+                  { name: 'Cart', path: '/cart', },
                 ].map((link, index) => (
                   <Link
                     key={index}
@@ -261,6 +263,7 @@ export class Navbar extends Component {
                   { name: 'About', path: '/about',},
                   { name: 'Services', path: '/services',  },
                   { name: 'Contact', path: '/contact',},
+                  { name: 'Product', path: '/contact',},
                 ].map((link, index) => (
                   <Link
                     key={index}

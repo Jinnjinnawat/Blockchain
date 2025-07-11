@@ -1,84 +1,51 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
-import { BrowserRouter, Routes, Route,Link, createBrowserRouter, RouterProvider} from 'react-router-dom';
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import './index.css';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { Buffer } from 'buffer';
+import { CartProvider } from './contexts/CartContext'; // ✅ นำเข้า CartProvider
+
+// นำเข้า pages ทั้งหมด
 import Home from './pages/Home.jsx';
-import Login from './components/FormLogin.jsx'
+import Login from './components/FormLogin.jsx';
 import Jumbotron from './pages/Jumbotron.jsx';
 import FormReg from './components/FormReg.jsx';
 import Dashboard from './pages/Dashboard.jsx';
 import TableProduct from './components/TableProduct.jsx';
-import Listproduct from './pages/Listproduct.jsx'
-import { Buffer } from 'buffer'
-window.Buffer = Buffer
+import Listproduct from './pages/Listproduct.jsx';
 import Tableuser from './components/Tableuser.jsx';
 import ModernFarmerAbout from './pages/About.jsx';
-import BlockchainFarmServices from './pages/Services.jsx'
+import BlockchainFarmServices from './pages/Services.jsx';
 import ProductDetail from './pages/ProductDetail.jsx';
 import ProductListPage from './pages/ProductListPage.jsx';
+import ContactPage from './pages/Contact.jsx';
+import ProductListPage2 from './pages/ProductList.jsx';
+import ShoppingCartPage from './pages/Cart.jsx';
+
+window.Buffer = Buffer;
 
 const router = createBrowserRouter([
-  {
-    path:"/my-products",
-    element:<Listproduct></Listproduct>    
-  },
-  {
-    path:"/home",
-    element:<Home></Home>    
-  },
-  {
-    path:"/tableuser",
-    element:<Tableuser></Tableuser> 
-  },
-  {
-    path:"/tableproduct",
-    element:<TableProduct></TableProduct>
-  },
-  {
-    path:"/login",
-    element:<Login></Login>  
-  },
-  {
-    path:"/",
-    element:<Jumbotron></Jumbotron> 
-  },
-  {
-    path:"/register",
-    element:<FormReg></FormReg>
-  },
-  {
-    path:"/dashboard",
-    element:<Dashboard></Dashboard>
-  }
-  ,
-  {
-    path:"/dashboard",
-    element:<Dashboard></Dashboard>
-  }
-  ,
-  {
-    path:"/about",
-    element:<ModernFarmerAbout></ModernFarmerAbout>
-  }
-   ,
-  {
-    path:"/services",
-    element:<BlockchainFarmServices></BlockchainFarmServices>
-  },
-  {
-    path: "/product/:id",
-    element: <ProductDetail />
-  },
-  {
-    path: "/products/:category",
-    element: <ProductListPage />
-  },
-  
-  
+  { path: "/my-products", element: <Listproduct /> },
+  { path: "/home", element: <Home /> },
+  { path: "/tableuser", element: <Tableuser /> },
+  { path: "/tableproduct", element: <TableProduct /> },
+  { path: "/login", element: <Login /> },
+  { path: "/", element: <Jumbotron /> },
+  { path: "/register", element: <FormReg /> },
+  { path: "/dashboard", element: <Dashboard /> },
+  { path: "/about", element: <ModernFarmerAbout /> },
+  { path: "/services", element: <BlockchainFarmServices /> },
+  { path: "/product/:id", element: <ProductDetail /> },
+  { path: "/products/:category", element: <ProductListPage /> },
+  { path: "/contact", element: <ContactPage /> },
+  { path: "/productlist", element: <ProductListPage2 /> },
+  { path: "/cart", element: <ShoppingCartPage /> },
+]);
 
-
-])
 createRoot(document.getElementById('root')).render(
- <RouterProvider router={router}/>
-)
+  <StrictMode>
+    <CartProvider>
+      <RouterProvider router={router} />
+    </CartProvider>
+  </StrictMode>
+);

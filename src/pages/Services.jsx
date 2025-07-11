@@ -13,6 +13,7 @@ import {
   Phone,
   Mail
 } from 'lucide-react';
+import Footer from '../components/Footer';
 
 const BlockchainFarmServices = () => {
   const [activeService, setActiveService] = useState(null);
@@ -163,6 +164,7 @@ const BlockchainFarmServices = () => {
           </div>
         </div>
       </div>
+      <Footer></Footer>
     </div>
   );
 };

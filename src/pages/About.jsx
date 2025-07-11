@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Leaf, Users, Target, Award, ChevronRight, Sun, Droplets, Sprout } from 'lucide-react';
 import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 const ModernFarmerAbout = () => {
   const [activeCard, setActiveCard] = useState(null);
   const [scrollY, setScrollY] = useState(0);
@@ -147,7 +148,7 @@ const ModernFarmerAbout = () => {
           </div>
         </div>
       </div>
-
+<Footer></Footer>
       <style jsx>{`
         @keyframes spin-slow {
           from { transform: rotate(0deg); }
@@ -164,6 +165,7 @@ const ModernFarmerAbout = () => {
           animation: fade-in 1s ease-out;
         }
       `}</style>
+      
     </div>
   );
 };
