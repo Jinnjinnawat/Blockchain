@@ -8,9 +8,10 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Footer from '../components/Footer';
 
-// --- Component สำหรับการ์ดสินค้าแต่ละใบ (ไม่มีการแก้ไข) ---
+// --- Component สำหรับการ์ดสินค้าแต่ละใบ (ส่วนที่แก้ไข) ---
 const ProductCard = ({ product }) => {
-  const { addToCart } = useCart();
+  // 1. ดึง cartItems และ addToCart มาจาก useCart Context
+  const { addToCart, cartItems } = useCart();
 
   const formatCurrency = (amount) => {
     return new Intl.NumberFormat('th-TH', {
@@ -20,12 +21,25 @@ const ProductCard = ({ product }) => {
     }).format(amount);
   };
 
+  // 2. ปรับปรุงฟังก์ชัน handleAddToCart
   const handleAddToCart = () => {
-    addToCart(product);
-    toast.success(`✅ เพิ่ม "${product.name}" แล้ว`, {
-      position: 'top-right',
-      autoClose: 2000,
-    });
+    // ตรวจสอบว่าสินค้าชิ้นนี้มีอยู่ในตะกร้าแล้วหรือยัง (เช็คจาก product.id)
+    const isItemInCart = cartItems.some(item => item.id === product.id);
+
+    if (isItemInCart) {
+      // ถ้ามีอยู่แล้ว ให้แสดงข้อความเตือน
+      toast.warn(`🛒 "${product.product_name}" มีอยู่ในตะกร้าแล้ว`, {
+        position: 'top-right',
+        autoClose: 2000,
+      });
+    } else {
+      // ถ้ายังไม่มี ให้เพิ่มลงตะกร้าและแสดงข้อความสำเร็จ
+      addToCart(product);
+      toast.success(`✅ เพิ่ม "${product.product_name}" แล้ว`, {
+        position: 'top-right',
+        autoClose: 2000,
+      });
+    }
   };
 
   return (
@@ -33,7 +47,7 @@ const ProductCard = ({ product }) => {
       <div className="w-full h-48 bg-gray-100">
         <img
           src={product.imageUrl || 'https://placehold.co/600x400/e2e8f0/333333?text=สินค้า'}
-          alt={product.name}
+          alt={product.product_name}
           className="w-full h-full object-cover"
           onError={(e) => {
             e.target.onerror = null;
@@ -45,7 +59,8 @@ const ProductCard = ({ product }) => {
         <span className="inline-block bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded-full mb-2">
           {product.category || 'ทั่วไป'}
         </span>
-        <h3 className="text-lg font-bold text-gray-800 truncate">{product.name}</h3>
+        <h3 className="text-lg font-bold text-gray-800 truncate">{product.product_name}</h3>
+        <p className="text-xs font-bold text-gray-800 truncate">{product.detail}</p>
         <p className="text-xl font-semibold text-green-600 mt-2">{formatCurrency(product.price)}</p>
         <button
           onClick={handleAddToCart}
@@ -58,6 +73,7 @@ const ProductCard = ({ product }) => {
     </div>
   );
 };
+
 
 // --- Component สำหรับช่องค้นหาแบบทันสมัย (ไม่มีการแก้ไข) ---
 const SearchBar = ({ searchTerm, onSearchChange, onClearSearch }) => {
@@ -171,7 +187,7 @@ const ProductListPage = () => {
       <Navbar />
       <div className="container mx-auto px-4 py-8">
         <h1 className="text-3xl md:text-4xl font-bold text-gray-800 text-center mb-10">
-          สินค้าเกษตรสดใหม่จากฟาร์ม
+          รายการสินค้า
         </h1>
 
         <div className="max-w-md mx-auto mb-8">
@@ -239,10 +255,10 @@ const ProductListPage = () => {
              {searchTerm && (
                <div className="mb-4 p-3 bg-blue-50 rounded-lg">
                  <p className="text-sm text-blue-700">
-                    ผลการค้นหา "{searchTerm}" พบ {filteredProducts.length} สินค้า
+                   ผลการค้นหา "{searchTerm}" พบ {filteredProducts.length} สินค้า
                  </p>
                </div>
-            )}
+             )}
 
             {loading ? (
               <LoadingState />

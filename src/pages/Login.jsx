@@ -1,10 +1,41 @@
-import { useEffect } from 'react';
+import { useState } from 'react';
+import { useUser } from '../contexts/UserContext';
+import { useNavigate } from 'react-router-dom';
 import 'flowbite';
 
 export default function Login() {
-  useEffect(() => {
-    // Flowbite auto initializes via data attributes
-  }, []);
+  const { setUser } = useUser();
+  const navigate = useNavigate();
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // 🔐 ตรวจสอบข้อมูล (จำลอง)
+    if (email === 'somchai@email.com' && password === '123456') {
+      const userData = {
+        name: 'สมชาย ใจดี',
+        position: 'Senior Developer',
+        company: 'Tech Innovation Co.',
+        email: 'somchai@email.com',
+        phone: '+66 89 123 4567',
+        location: 'Bangkok, Thailand',
+        joinDate: 'January 2020',
+        bio: 'Passionate full-stack developer with 5+ years of experience...',
+        skills: ['React', 'Node.js', 'TypeScript'],
+        achievements: ['Employee of the Year 2024', 'Led 3 successful product launches'],
+        stats: { projects: 42, followers: 1284, following: 892 }
+      };
+
+      setUser(userData);
+      navigate('/profile'); // ✅ ไปหน้าโปรไฟล์
+    } else {
+      setError('อีเมลหรือรหัสผ่านไม่ถูกต้อง');
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-200 to-blue-300 flex items-center justify-center p-4">
@@ -12,40 +43,39 @@ export default function Login() {
         <h2 className="text-2xl font-bold text-center text-gray-800 dark:text-white mb-6">
           Login to Your Account
         </h2>
-        <form className="space-y-6">
-          {/* Email input */}
+
+        {error && (
+          <div className="mb-4 text-sm text-red-600 text-center">{error}</div>
+        )}
+
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Email */}
           <div>
-            <label
-              htmlFor="email"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >
+            <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">
               Your email
             </label>
             <input
               type="email"
               id="email"
-              className="form-input block w-full border border-gray-300 text-gray-900 text-sm rounded-lg 
-                         focus:ring-green-500 focus:border-green-500 
-                         dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+              className="form-input block w-full border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500"
               placeholder="name@flowbite.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               required
             />
           </div>
 
-          {/* Password input */}
+          {/* Password */}
           <div>
-            <label
-              htmlFor="password"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >
+            <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900">
               Your password
             </label>
             <input
               type="password"
               id="password"
-              className="form-input block w-full border border-gray-300 text-gray-900 text-sm rounded-lg 
-                         focus:ring-green-500 focus:border-green-500 
-                         dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+              className="form-input block w-full border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               required
             />
           </div>
@@ -55,22 +85,17 @@ export default function Login() {
             <input
               id="remember"
               type="checkbox"
-              value=""
-              className="w-4 h-4 text-green-600 bg-gray-100 border-gray-300 rounded 
-                         focus:ring-green-500 dark:bg-gray-700 dark:border-gray-600"
+              className="w-4 h-4 text-green-600 bg-gray-100 border-gray-300 rounded focus:ring-green-500"
             />
-            <label htmlFor="remember" className="ml-2 text-sm text-gray-700 dark:text-gray-300">
+            <label htmlFor="remember" className="ml-2 text-sm text-gray-700">
               Remember me
             </label>
           </div>
 
-          {/* Submit button */}
+          {/* Submit */}
           <button
             type="submit"
-            className="w-full text-white bg-green-600 hover:bg-green-700 focus:ring-4 
-                       focus:outline-none focus:ring-green-300 font-medium rounded-lg 
-                       text-sm px-5 py-2.5 text-center dark:bg-green-600 
-                       dark:hover:bg-green-700 dark:focus:ring-green-800"
+            className="w-full text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
           >
             Login
           </button>

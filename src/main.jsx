@@ -3,7 +3,8 @@ import { createRoot } from 'react-dom/client';
 import './index.css';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { Buffer } from 'buffer';
-import { CartProvider } from './contexts/CartContext'; // ✅ นำเข้า CartProvider
+import { CartProvider } from './contexts/CartContext';
+import { UserProvider } from './contexts/UserContext'; // ✅ เพิ่มบรรทัดนี้
 
 // นำเข้า pages ทั้งหมด
 import Home from './pages/Home.jsx';
@@ -20,10 +21,13 @@ import ProductDetail from './pages/ProductDetail.jsx';
 import ContactPage from './pages/Contact.jsx';
 import ProductListPage2 from './pages/ProductList.jsx';
 import ShoppingCartPage from './pages/Cart.jsx';
+import ModernProfilePage from './pages/Proflie.jsx';
+
 
 window.Buffer = Buffer;
 
 const router = createBrowserRouter([
+  { path: "/profile", element: <ModernProfilePage /> },
   { path: "/my-products", element: <Listproduct /> },
   { path: "/home", element: <Home /> },
   { path: "/tableuser", element: <Tableuser /> },
@@ -37,14 +41,16 @@ const router = createBrowserRouter([
   { path: "/product/:id", element: <ProductDetail /> },
   { path: "/contact", element: <ContactPage /> },
   { path: "/productlist/:category", element: <ProductListPage2 /> },
-   { path: "/productlist", element: <ProductListPage2 /> },
+  { path: "/productlist", element: <ProductListPage2 /> },
   { path: "/cart", element: <ShoppingCartPage /> },
 ]);
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <CartProvider>
-      <RouterProvider router={router} />
+      <UserProvider> {/* ✅ ครอบ UserProvider ตรงนี้ */}
+        <RouterProvider router={router} />
+      </UserProvider>
     </CartProvider>
   </StrictMode>
 );

@@ -150,7 +150,7 @@ const ShoppingCartPage = () => {
   };
 
   const handleBackToShopping = () => {
-    navigate('/products'); // หรือเส้นทางที่เหมาะสม
+    navigate('/productlist'); // หรือเส้นทางที่เหมาะสม
   };
 
   const subtotal = getCartTotal();
