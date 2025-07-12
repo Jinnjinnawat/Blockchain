@@ -17,7 +17,6 @@ import Tableuser from './components/Tableuser.jsx';
 import ModernFarmerAbout from './pages/About.jsx';
 import BlockchainFarmServices from './pages/Services.jsx';
 import ProductDetail from './pages/ProductDetail.jsx';
-import ProductListPage from './pages/ProductListPage.jsx';
 import ContactPage from './pages/Contact.jsx';
 import ProductListPage2 from './pages/ProductList.jsx';
 import ShoppingCartPage from './pages/Cart.jsx';
@@ -36,9 +35,8 @@ const router = createBrowserRouter([
   { path: "/about", element: <ModernFarmerAbout /> },
   { path: "/services", element: <BlockchainFarmServices /> },
   { path: "/product/:id", element: <ProductDetail /> },
-  { path: "/products/:category", element: <ProductListPage /> },
   { path: "/contact", element: <ContactPage /> },
-  { path: "/productlist", element: <ProductListPage2 /> },
+  { path: "/productlist/:category", element: <ProductListPage2 /> },
   { path: "/cart", element: <ShoppingCartPage /> },
 ]);
 

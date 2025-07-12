@@ -198,7 +198,7 @@ const ListMenuHome = () => {
               {/* Button */}
               <div className="p-4">
                 <Link 
-                  to={`/products/${encodeURIComponent(market.category)}`}
+                  to={`/productlist/${encodeURIComponent(market.category)}`}
                   onClick={() => handleMarketClick(market.category)}
                   className="block w-full"
                 >
