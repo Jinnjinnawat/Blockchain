@@ -5,9 +5,12 @@ import {
   Camera, Award, Star, Heart, MessageCircle
 } from 'lucide-react';
 import Navbar from '../components/Navbar';
+import Web3 from 'web3';
+import sepolia from '../services/sepoliaService';
+
 export default function ModernProfile() {
   const { user } = useUser();
-
+const [totalSupply, setTotalSupply] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [activeTab, setActiveTab] = useState('about');
 
@@ -36,6 +39,25 @@ export default function ModernProfile() {
     }
   }, [user]);
 
+  useEffect(() => {
+    const initWeb3 = async () => {
+      try {
+        // ✅ ตรวจสอบบล็อกปัจจุบัน
+        const blockNumber = await sepolia.provider.eth.getBlockNumber();
+        console.log("Current Block:", blockNumber);
+
+        // ✅ เรียก totalSupply จาก smart contract
+        const total = await sepolia.contract.methods.totalSupply().call();
+        setTotalSupply(total);
+        console.log("Total Supply:", total);
+      } catch (err) {
+        console.error("Web3 error:", err);
+      }
+    };
+
+    initWeb3();
+  }, []);
+  
   const handleEdit = () => {
     setIsEditing(!isEditing);
   };
